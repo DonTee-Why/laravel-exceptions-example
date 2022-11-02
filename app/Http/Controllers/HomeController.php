@@ -34,34 +34,34 @@ class HomeController extends Controller
 
         $task = $validated["task"];
 
-        try {
+        return rescue(function () use ($task) {
             $this->performTask($task);
-            return redirect('/');
-        } catch (ExceptionOne $ex1) {
-            return redirect('/')->with('status', $ex1->getMessage());
-        } catch (ExceptionTwo $ex2) {
-            return redirect('/')->with('status', $ex2->getMessage());
-        } catch (ExceptionThree $ex3) {
-            return redirect('/')->with('status', $ex3->getMessage());
-        }
+        }, function ($ex) {
+            return redirect('/')->with('status', $ex->getMessage());
+        }, true);
     }
 
-    public function performTask($task){
+    public function performTask($task)
+    {
         switch ($task) {
             case 'Task 1':
-                throw new ExceptionOne("Exception One was thrown");
+                throw new ExceptionOne("Exception One was thrown.");
                 break;
             case 'Task 2':
-                throw new ExceptionTwo("Exception Two was thrown");
+                throw new ExceptionTwo("Exception Two was thrown.");
                 break;
             case 'Task 3':
-                throw new ExceptionThree("Exception Three was thrown");
+                throw new ExceptionThree("Exception Three was thrown.");
                 break;
-            
+            case 'Task 4':
+                throw new ExceptionThree("Exception Four was thrown.");
+                break;
+            case 'Task 5':
+                throw new ExceptionThree("Exception Five was thrown.");
+                break;
             default:
-                throw new \Exception("Error Processing Request", 1);
+                throw new \Exception("Error Processing Request");
                 break;
         }
-        
     }
 }

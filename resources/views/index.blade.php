@@ -53,13 +53,15 @@
                                 <option value="Task 1">Task 1</option>
                                 <option value="Task 2">Task 2</option>
                                 <option value="Task 3">Task 3</option>
+                                <option value="Task 4">Task 4</option>
+                                <option value="Task 5">Task 5</option>
                             </select>
                             @error('task')
                                 <span class="text-danger mb-1">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="d-grid col-6 col-md-3 mx-auto">
-                            <button class="btn btn-secondary" type="submit" id="store">Button</button>
+                            <button class="btn btn-secondary" type="submit" id="store">Submit</button>
                         </div>
                     </form>
                 </div>
